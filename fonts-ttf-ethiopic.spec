@@ -1,7 +1,7 @@
 Summary:	Free Ethiopic TrueType fonts
 Name:		fonts-ttf-ethiopic
 Version:	1.0
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPL
 Group:		System/Fonts/True type
 # GFZemen unicode font from
@@ -12,8 +12,6 @@ Source0:	fonts-ttf-ethiopic.tar.bz2
 BuildArch:	noarch
 BuildRoot:	%_tmppath/%name-%version-%release-root
 BuildRequires:	freetype-tools
-Requires(post):		chkfontpath
-Requires(postun):	chkfontpath
 Requires(post): fontconfig
 Requires(postun): fontconfig
 
@@ -38,16 +36,16 @@ cd %buildroot/%_datadir/fonts/TTF/ethiopic/
 cp fonts.scale fonts.dir
 )
 
+mkdir -p %{buildroot}%_sysconfdir/X11/fontpath.d/
+ln -s ../../..%_datadir/fonts/TTF/ethiopic \
+    %{buildroot}%_sysconfdir/X11/fontpath.d/ttf-ethiopic:pri=50
+
 %post
-[ -x %_sbindir/chkfontpath ] && %_sbindir/chkfontpath -q -a %_datadir/fonts/TTF/ethiopic
-touch %{_datadir}/fonts/TTF
 [ -x %{_bindir}/fc-cache ]  && %{_bindir}/fc-cache 
 
 %postun
 # 0 means a real uninstall
 if [ "$1" = "0" ]; then
-   [ -x %_sbindir/chkfontpath ] && \
-   %_sbindir/chkfontpath -q -r %_datadir/fonts/TTF/ethiopic
    [ -x %{_bindir}/fc-cache ]  && %{_bindir}/fc-cache 
 fi
 
@@ -56,11 +54,7 @@ rm -fr %buildroot
 
 %files
 %defattr(0644,root,root,0755)
-#%doc *txt
-#
-%dir %_datadir/fonts/TTF/
 %dir %_datadir/fonts/TTF/ethiopic/
 %_datadir/fonts/TTF/ethiopic/*
-
-
+%_sysconfdir/X11/fontpath.d/ttf-ethiopic:pri=50
 
