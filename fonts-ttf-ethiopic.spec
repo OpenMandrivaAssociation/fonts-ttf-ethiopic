@@ -10,7 +10,6 @@ Group:		System/Fonts/True type
 Source0:	fonts-ttf-ethiopic.tar.bz2
 
 BuildArch:	noarch
-BuildRoot:	%_tmppath/%name-%version-%release-root
 BuildRequires:	freetype-tools
 Requires(post): fontconfig
 Requires(postun): fontconfig
