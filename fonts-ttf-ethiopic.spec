@@ -1,7 +1,7 @@
-Summary:	Free Ethiopic TrueType fonts
+Summary:	Ethiopic TrueType fonts
 Name:		fonts-ttf-ethiopic
 Version:	1.0
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	GPL
 Group:		System/Fonts/True type
 # GFZemen unicode font from
