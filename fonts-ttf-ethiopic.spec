@@ -1,7 +1,7 @@
 Summary:	Ethiopic TrueType fonts
 Name:		fonts-ttf-ethiopic
 Version:	1.0
-Release:	%mkrel 8
+Release:	%mkrel 9
 License:	GPL
 Group:		System/Fonts/True type
 # GFZemen unicode font from
@@ -12,8 +12,6 @@ Source0:	fonts-ttf-ethiopic.tar.bz2
 BuildArch:	noarch
 BuildRoot:	%_tmppath/%name-%version-%release-root
 BuildRequires:	freetype-tools
-Requires(post): fontconfig
-Requires(postun): fontconfig
 
 %description
 This Package provides Free Ethiopic TrueType fonts.
@@ -39,15 +37,6 @@ cp fonts.scale fonts.dir
 mkdir -p %{buildroot}%_sysconfdir/X11/fontpath.d/
 ln -s ../../..%_datadir/fonts/TTF/ethiopic \
     %{buildroot}%_sysconfdir/X11/fontpath.d/ttf-ethiopic:pri=50
-
-%post
-[ -x %{_bindir}/fc-cache ]  && %{_bindir}/fc-cache 
-
-%postun
-# 0 means a real uninstall
-if [ "$1" = "0" ]; then
-   [ -x %{_bindir}/fc-cache ]  && %{_bindir}/fc-cache 
-fi
 
 %clean
 rm -fr %buildroot
