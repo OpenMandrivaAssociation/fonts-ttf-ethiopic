@@ -1,7 +1,7 @@
 Summary:	Ethiopic TrueType fonts
 Name:		fonts-ttf-ethiopic
 Version:	1.0
-Release:	%mkrel 9
+Release:	%mkrel 10
 License:	GPL
 Group:		System/Fonts/True type
 # GFZemen unicode font from
