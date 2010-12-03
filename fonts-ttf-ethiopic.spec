@@ -11,7 +11,7 @@ Source0:	fonts-ttf-ethiopic.tar.bz2
 
 BuildArch:	noarch
 BuildRoot:	%_tmppath/%name-%version-%release-root
-BuildRequires:	freetype-tools
+BuildRequires:	mkfontscale
 
 %description
 This Package provides Free Ethiopic TrueType fonts.
@@ -19,8 +19,6 @@ This Package provides Free Ethiopic TrueType fonts.
 %prep
 
 %setup -q -n %{name}
-
-%build
 
 %install
 rm -fr %buildroot
@@ -30,7 +28,7 @@ cp *.ttf %buildroot/%_datadir/fonts/TTF/ethiopic/
 
 (
 cd %buildroot/%_datadir/fonts/TTF/ethiopic/
-%_sbindir/ttmkfdir -u -m 1 > fonts.scale
+mkfontscale > fonts.scale
 cp fonts.scale fonts.dir
 )
 
